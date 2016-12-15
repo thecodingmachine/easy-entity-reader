@@ -1,0 +1,19 @@
+services:
+  easy_entity_adapter.wrapper:
+    class: Drupal\easy_entity_reader\EntityWrapper
+    tags:
+     - { name: service_collector, tag: easy_entity_adapter_converter, call: registerConverter }
+  easy_entity_adapter.default_converter:
+    class: Drupal\easy_entity_reader\Converters\DefaultConverter
+    tags:
+     - { name: easy_entity_adapter_converter, priority: -9999 }
+  easy_entity_adapter.collection_converter:
+    class: Drupal\easy_entity_reader\Converters\CollectionConverter
+    arguments: ['@easy_entity_adapter.wrapper', '@entity_type.manager']
+    tags:
+     - { name: easy_entity_adapter_converter, priority: 1 }
+  easy_entity_adapter.entity_reference_converter:
+    class: Drupal\easy_entity_reader\Converters\EntityReferenceConverter
+    arguments: ['@easy_entity_adapter.wrapper', '@entity_type.manager']
+    tags:
+     - { name: easy_entity_adapter_converter, priority: 2 }

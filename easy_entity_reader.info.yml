@@ -1,0 +1,5 @@
+name: Easy Entity Reader
+core: 8.x
+type: module
+package: Utility
+description: Help developers access entity content
