@@ -9,7 +9,17 @@
       "email": "m.teyssier@thecodingmachine.com"
     }
   ],
+  "repositories": [
+    {
+        "type": "composer",
+        "url": "https://packages.drupal.org/8"
+    }
+  ],
   "require": {
-    "php": ">=7.0"
+    "php": ">=7.0",
+    "drupal/core": "~8.0"
+  },
+  "require-dev": {
+    "drupal/field_collection": "~1.0"
   }
 }
