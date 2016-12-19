@@ -62,3 +62,13 @@ Simply use:
 composer require thecodingmachine/easy.entity.adapter
 ```
 
+Twig integration
+----------------
+
+From Twig, you can wrap an entity into the adapter using the `easy_entity` function.
+ 
+For instance:
+
+```twig
+{{ easy_entity(node).title }}
+```

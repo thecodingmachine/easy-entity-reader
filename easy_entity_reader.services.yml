@@ -17,3 +17,8 @@ services:
     arguments: ['@easy_entity_adapter.wrapper', '@entity_type.manager']
     tags:
      - { name: easy_entity_adapter_converter, priority: 2 }
+  easy_entity_reader.twig_extension:
+    class: Drupal\easy_entity_reader\TwigExtension
+    arguments: ['@easy_entity_adapter.wrapper']
+    tags:
+      - { name: twig.extension }
