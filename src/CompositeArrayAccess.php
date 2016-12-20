@@ -27,7 +27,12 @@ class CompositeArrayAccess implements \ArrayAccess
      */
     public function offsetExists($offset)
     {
-        return isset($this->entity->$offset);
+        foreach ($this->arrays as $array) {
+            if (isset($array[$offset])) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
