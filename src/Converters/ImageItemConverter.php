@@ -3,16 +3,17 @@
 namespace Drupal\easy_entity_reader\Converters;
 
 use Drupal\Core\Field\FieldItemInterface;
-use Drupal\field_collection\Plugin\Field\FieldType\FieldCollection;
 use Drupal\easy_entity_reader\EntityWrapper;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\image\Plugin\Field\FieldType\ImageItem;
+use Drupal\easy_entity_reader\CompositeArrayAccess;
 
 /**
- * Convert collection class to value.
+ * Convert image class to value.
  *
  * Class DefaultConverter.
  */
-class CollectionConverter implements ConverterInterface
+class ImageItemConverter implements ConverterInterface
 {
     /**
      * @var EntityWrapper
@@ -29,7 +30,7 @@ class CollectionConverter implements ConverterInterface
      * @param EntityTypeManagerInterface $entityManager
      */
     public function __construct(EntityWrapper $entityWrapper,
-                            EntityTypeManagerInterface $entityManager)
+        EntityTypeManagerInterface $entityManager)
     {
         $this->entityWrapper = $entityWrapper;
         $this->entityManager = $entityManager;
@@ -40,9 +41,26 @@ class CollectionConverter implements ConverterInterface
      */
     public function convert(FieldItemInterface $value)
     {
-        $node = $this->entityManager->getStorage('field_collection_item')->load($value->getValue()['value']);
+        $values = $value->getValue();
+        $type = str_replace('default:', '', $value->getParent()->getSettings()['handler']);
+        $node = $this->entityManager->getStorage($type)->load($values['target_id']);
 
-        return $this->entityWrapper->wrap($node);
+        $frontArray = [];
+        if (isset($values['alt'])) {
+            $frontArray['alt'] = $values['alt'];
+        }
+        if (isset($values['title'])) {
+            $frontArray['title'] = $values['title'];
+        }
+        if (isset($values['width'])) {
+            $frontArray['width'] = $values['width'];
+        }
+        if (isset($values['height'])) {
+            $frontArray['height'] = $values['height'];
+        }
+        $wrap = $this->entityWrapper->wrap($node);
+
+        return new CompositeArrayAccess([$frontArray, $wrap]);
     }
 
     /**
@@ -54,6 +72,6 @@ class CollectionConverter implements ConverterInterface
      */
     public function canConvert(FieldItemInterface $value) : bool
     {
-        return $value instanceof FieldCollection;
+        return $value instanceof ImageItem;
     }
 }
