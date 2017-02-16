@@ -6,6 +6,7 @@ use Drupal\Core\Field\FieldItemInterface;
 use Drupal\field_collection\Plugin\Field\FieldType\FieldCollection;
 use Drupal\easy_entity_reader\EntityWrapper;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\field_collection\Entity\FieldCollectionItem;
 
 /**
  * Convert collection class to value.
@@ -40,9 +41,26 @@ class CollectionConverter implements ConverterInterface
      */
     public function convert(FieldItemInterface $value)
     {
-        $node = $this->entityManager->getStorage('field_collection_item')->load($value->getValue()['value']);
-
-        return $this->entityWrapper->wrap($node);
+        $values = $value->getValue();
+        if(isset($values['value'])) {
+            $node = $this->entityManager->getStorage('field_collection_item')->load($values['value']);
+            $test = $this->entityWrapper->wrap($node);
+            if($node) {
+                return $this->entityWrapper->wrap($node);
+            }
+        }
+        else {
+            $valuesFormat = [];
+            foreach ($values as $k => $v) {
+                if(is_array($v) && isset($v[0]))
+                    $valuesFormat[$k]['x-default'] = $v[0];
+            }
+            $node = new FieldCollectionItem($valuesFormat, 'field_collection_item', $values['field_collection_item']->bundle());
+            if($node) {
+                return $this->entityWrapper->wrap($node);
+            }
+        }
+        return [];
     }
 
     /**
