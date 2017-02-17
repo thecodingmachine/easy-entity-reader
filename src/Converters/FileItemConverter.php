@@ -6,13 +6,14 @@ use Drupal\Core\Field\FieldItemInterface;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
 use Drupal\easy_entity_reader\EntityWrapper;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\file\Plugin\Field\FieldType\FileItem;
 
 /**
- * Convert the entity reference class to value.
+ * Convert the file item class to value.
  *
- * Class DefaultConverter.
+ * Class FileItemConverter.
  */
-class EntityReferenceConverter implements ConverterInterface
+class FileItemConverter implements ConverterInterface
 {
     /**
      * @var EntityWrapper
@@ -40,10 +41,17 @@ class EntityReferenceConverter implements ConverterInterface
      */
     public function convert(FieldItemInterface $value)
     {
+        $node = null;
         $type = str_replace('default:', '', $value->getParent()->getSettings()['handler']);
-        $node = $this->entityManager->getStorage($type)->load($value->getValue()['target_id']);
-
-        return $this->entityWrapper->wrap($node);
+        if(isset($value->getValue()['fids'][0])) {
+            $node = $this->entityManager->getStorage($type)->load($value->getValue()['fids'][0]);
+        }
+        if($node !== null) {
+            return $this->entityWrapper->wrap($node);
+        }
+        else {
+            return null;
+        }
     }
 
     /**
@@ -55,6 +63,6 @@ class EntityReferenceConverter implements ConverterInterface
      */
     public function canConvert(FieldItemInterface $value) : bool
     {
-        return $value instanceof EntityReferenceItem;
+        return $value instanceof FileItem;
     }
 }
