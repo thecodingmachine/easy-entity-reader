@@ -5,14 +5,13 @@ This package targets Drupal 8.
 
 It offers developers a friendly way of accessing their entities.
 
-[![Latest Stable Version](https://poser.pugx.org/thecodingmachine/easy-entity-adapter/v/stable)](https://packagist.org/packages/thecodingmachine/easy-entity-adapter)
-[![Total Downloads](https://poser.pugx.org/thecodingmachine/easy-entity-adapter/downloads)](https://packagist.org/packages/thecodingmachine/easy-entity-adapter)
-[![Latest Unstable Version](https://poser.pugx.org/thecodingmachine/easy-entity-adapter/v/unstable)](https://packagist.org/packages/thecodingmachine/easy-entity-adapter)
-[![License](https://poser.pugx.org/thecodingmachine/easy-entity-adapter/license)](https://packagist.org/packages/thecodingmachine/easy-entity-adapter)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/thecodingmachine/easy-entity-adapter/badges/quality-score.png?b=1.0)](https://scrutinizer-ci.com/g/thecodingmachine/easy-entity-adapter/?branch=1.0)
-[![Build Status](https://travis-ci.org/thecodingmachine/easy-entity-adapter.svg?branch=1.0)](https://travis-ci.org/thecodingmachine/easy-entity-adapter)
-[![Coverage Status](https://coveralls.io/repos/thecodingmachine/easy-entity-adapter/badge.svg?branch=1.0&service=github)](https://coveralls.io/github/thecodingmachine/easy-entity-adapter?branch=1.0)
-
+[![Latest Stable Version](https://poser.pugx.org/thecodingmachine/easy-entity-reader/v/stable)](https://packagist.org/packages/thecodingmachine/easy-entity-reader)
+[![Total Downloads](https://poser.pugx.org/thecodingmachine/easy-entity-reader/downloads)](https://packagist.org/packages/thecodingmachine/easy-entity-reader)
+[![Latest Unstable Version](https://poser.pugx.org/thecodingmachine/easy-entity-reader/v/unstable)](https://packagist.org/packages/thecodingmachine/easy-entity-reader)
+[![License](https://poser.pugx.org/thecodingmachine/easy-entity-reader/license)](https://packagist.org/packages/thecodingmachine/easy-entity-reader)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/thecodingmachine/easy-entity-reader/badges/quality-score.png?b=1.0)](https://scrutinizer-ci.com/g/thecodingmachine/easy-entity-reader/?branch=1.0)
+[![Build Status](https://travis-ci.org/thecodingmachine/easy-entity-reader.svg?branch=1.0)](https://travis-ci.org/thecodingmachine/easy-entity-reader)
+[![Coverage Status](https://coveralls.io/repos/thecodingmachine/easy-entity-reader/badge.svg?branch=1.0&service=github)](https://coveralls.io/github/thecodingmachine/easy-entity-reader?branch=1.0)
 
 Why?
 ----
