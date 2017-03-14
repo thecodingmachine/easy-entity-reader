@@ -3,23 +3,23 @@ services:
     class: Drupal\easy_entity_reader\EntityWrapper
     tags:
      - { name: service_collector, tag: easy_entity_adapter_converter, call: registerConverter }
+  easy_entity_adapter.image_item_converter:
+    class: Drupal\easy_entity_reader\Converters\ImageItemConverter
+    arguments: ['@easy_entity_adapter.wrapper', '@entity_type.manager']
+    tags:
+     - { name: easy_entity_adapter_converter, priority: 5 }
   easy_entity_adapter.file_item_converter:
     class: Drupal\easy_entity_reader\Converters\FileItemConverter
     arguments: ['@easy_entity_adapter.wrapper', '@entity_type.manager']
     tags:
-     - { name: easy_entity_adapter_converter, priority: 5 }
+     - { name: easy_entity_adapter_converter, priority: 4 }
   easy_entity_adapter.color_field_converter:
     class: Drupal\easy_entity_reader\Converters\ColorFieldConverter
     arguments: ['@easy_entity_adapter.wrapper', '@entity_type.manager']
     tags:
-     - { name: easy_entity_adapter_converter, priority: 4 }
+     - { name: easy_entity_adapter_converter, priority: 3 }
   easy_entity_adapter.collection_converter:
     class: Drupal\easy_entity_reader\Converters\CollectionConverter
-    arguments: ['@easy_entity_adapter.wrapper', '@entity_type.manager']
-    tags:
-     - { name: easy_entity_adapter_converter, priority: 3 }
-  easy_entity_adapter.image_item_converter:
-    class: Drupal\easy_entity_reader\Converters\ImageItemConverter
     arguments: ['@easy_entity_adapter.wrapper', '@entity_type.manager']
     tags:
      - { name: easy_entity_adapter_converter, priority: 2 }
