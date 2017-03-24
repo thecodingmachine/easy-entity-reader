@@ -7,10 +7,14 @@ services:
     class: Drupal\easy_entity_reader\Converters\ImageItemConverter
     arguments: ['@easy_entity_adapter.wrapper', '@entity_type.manager']
     tags:
-     - { name: easy_entity_adapter_converter, priority: 5 }
+     - { name: easy_entity_adapter_converter, priority: 6 }
   easy_entity_adapter.file_item_converter:
     class: Drupal\easy_entity_reader\Converters\FileItemConverter
     arguments: ['@easy_entity_adapter.wrapper', '@entity_type.manager']
+    tags:
+     - { name: easy_entity_adapter_converter, priority: 5 }
+  easy_entity_adapter.link_item_converter:
+    class: Drupal\easy_entity_reader\Converters\LinkItemConverter
     tags:
      - { name: easy_entity_adapter_converter, priority: 4 }
   easy_entity_adapter.color_field_converter:
