@@ -42,8 +42,12 @@ class FileItemConverter implements ConverterInterface
     public function convert(FieldItemInterface $value)
     {
         $node = null;
+        $values = $value->getValue();
         $type = str_replace('default:', '', $value->getParent()->getSettings()['handler']);
-        if(isset($value->getValue()['fids'][0])) {
+        if(isset($values['target_id'])) {
+            $node = $this->entityManager->getStorage($type)->load($values['target_id']);
+        }
+        elseif(isset($value->getValue()['fids'][0])) {
             $node = $this->entityManager->getStorage($type)->load($value->getValue()['fids'][0]);
         }
         if($node !== null) {
