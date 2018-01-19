@@ -46,8 +46,8 @@ class TwigExtension extends \Twig_Extension
    *
    * @return EasyEntityAdapter
    */
-  public function easyEntity(EntityInterface $entity)
+  public function easyEntity(EntityInterface $entity = null)
   {
-      return $this->entityWrapper->wrap($entity);
+      return $entity ? $this->entityWrapper->wrap($entity) : null;
   }
 }
